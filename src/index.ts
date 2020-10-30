@@ -20,8 +20,7 @@ const run = async (args: IArgs) => {
     if (botWasMention && !message.author.bot) {
       let messageContent = message.content.split(' ');
       messageContent.shift()
-      const newMessage = messageContent.join(' ');
-      const service = await Dispatcher(newMessage);
+      const service = await Dispatcher(messageContent);
       if (!service) return;
       message.reply(service)
     }
