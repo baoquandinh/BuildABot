@@ -1,7 +1,7 @@
 import discord, { TextBasedChannel, TextChannel } from "discord.js";
 import auth from "./auth.json";
 import { IArgs } from "./resources/models/args";
-import { Dispatcher } from "./tasks/get_discord_service";
+import { Dispatcher } from "./tasks/dispatcher";
 
 const run = async (args: IArgs) => {
   const client = new discord.Client();
