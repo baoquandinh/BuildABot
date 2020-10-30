@@ -14,8 +14,6 @@ export const Dispatcher = (message: string[]): Promise<string> => {
       service.helpMessage;
       break;
     default:
-      // service = new HelpService();
-      // service.helpMessage;
       break;
   }
   return service.buildMessage();
