@@ -7,11 +7,10 @@ export class HelpService implements IService {
     return "";
   }
   buildMessage(): Promise<string> {
-    return Promise.resolve(`That service may not exist, here are the possible services I have:
-        League
-        --------
-        -league
-        -lol
-        -leagueoflegends`);
+    return Promise.resolve(`\`\`\`Usage
+    @BuildABot [command] [arguments]
+    Commands
+    [league, lol, leagueoflegends] Allows you to look up information for League of Legends
+    \`\`\``);
   }
 }
