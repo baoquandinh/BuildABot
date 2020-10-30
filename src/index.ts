@@ -14,15 +14,14 @@ const run = async (args: IArgs) => {
   });
 
   client.on("message", async (message) => {
-    const botWasMention = message.mentions.users.find(
-      (u) => u.id == botUser.id
-    );
-    if (botWasMention && !message.author.bot) {
-      let messageContent = message.content.split(' ');
-      messageContent.shift()
-      const service = await Dispatcher(messageContent);
+    const body = message.content;
+    console.log(body)
+    if (body.startsWith(`<@!${botUser.id}>`) && !message.author.bot) {
+      let components = body.split(" ");
+      components[0] = botUser.username
+      const service = await Dispatcher(components);
       if (!service) return;
-      message.reply(service)
+      message.reply(service);
     }
   });
 };
