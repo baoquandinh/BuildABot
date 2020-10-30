@@ -3,13 +3,13 @@ import { LeagueService } from "../services/league_service";
 
 export const Dispatcher = (originalMessage: string): Promise<string> => {
   // User accessing bot services
-  if (originalMessage.startsWith("-")) {
+  if (originalMessage.startsWith(".")) {
     let service: IService;
 
     const newMessage = originalMessage.split(" ");
     if (newMessage.length == 1)
       return Promise.resolve("You didn't give me enough information");
-    const botService = newMessage[0].trim().replace("-", "").toLowerCase();
+    const botService = newMessage[0].trim().replace(".", "").toLowerCase();
     console.log(botService);
     switch (true) {
       case LeagueService.canProcess(botService):
