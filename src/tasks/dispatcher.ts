@@ -12,7 +12,6 @@ export const Dispatcher = (components: string[]): Promise<string> => {
   switch (true) {
     case LeagueService.canProcess(botService):
       service = new LeagueService();
-      service.helpMessage;
       break;
   }
   return service.buildMessage();
