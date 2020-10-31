@@ -1,7 +1,7 @@
 import discord, { TextBasedChannel, TextChannel } from "discord.js";
 import auth from "./auth.json";
 import { IArgs } from "./resources/models/args";
-import { Dispatcher } from "./tasks/get_discord_service";
+import { Dispatcher } from "./tasks/dispatcher";
 
 const run = async (args: IArgs) => {
   const client = new discord.Client();
@@ -14,16 +14,13 @@ const run = async (args: IArgs) => {
   });
 
   client.on("message", async (message) => {
-    const botWasMention = message.mentions.users.find(
-      (u) => u.id == botUser.id
-    );
-    if (botWasMention && !message.author.bot) {
-      let messageContent = message.content.split(' ');
-      messageContent.shift()
-      const newMessage = messageContent.join(' ');
-      const service = await Dispatcher(newMessage);
-      if (!service) return;
-      message.reply(service)
+    const body = message.content;
+    const botWasMentioned = `<@!${botUser.id}>`
+    if (body.startsWith(botWasMentioned) && !message.author.bot) {
+      let components = body.split(" ");
+      components[0] = botUser.username
+      const response = await Dispatcher(components);
+      message.reply(response);
     }
   });
 };
