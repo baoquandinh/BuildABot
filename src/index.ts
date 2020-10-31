@@ -15,13 +15,12 @@ const run = async (args: IArgs) => {
 
   client.on("message", async (message) => {
     const body = message.content;
-    console.log(body)
-    if (body.startsWith(`<@!${botUser.id}>`) && !message.author.bot) {
+    const botWasMentioned = `<@!${botUser.id}>`
+    if (body.startsWith(botWasMentioned) && !message.author.bot) {
       let components = body.split(" ");
       components[0] = botUser.username
-      const service = await Dispatcher(components);
-      if (!service) return;
-      message.reply(service);
+      const response = await Dispatcher(components);
+      message.reply(response);
     }
   });
 };
