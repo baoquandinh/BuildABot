@@ -1,4 +1,4 @@
-import discord, { TextBasedChannel, TextChannel } from "discord.js";
+import discord from "discord.js";
 import auth from "./auth.json";
 import { IArgs } from "./resources/models/args";
 import { Dispatcher } from "./tasks/dispatcher";
