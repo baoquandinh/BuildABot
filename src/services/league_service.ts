@@ -14,12 +14,8 @@ me      Set information about the league account attached to your discord user.
 
   constructor(private botMention: string) {}
 
-  buildMessage(): Promise<string> {
-    return Promise.resolve(this.message);
-  }
-
-  processComponents(components: string[]) {
-    if (components.length === 0) return;
+  buildMessage(components: string[]): Promise<string> {
+    if (components.length === 0) return Promise.resolve(this.helpMessage);
     console.log(components);
     const command = components[0].trim().toLowerCase();
     switch (command) {
@@ -30,7 +26,9 @@ me      Set information about the league account attached to your discord user.
         this.message = `${command} - Set information about the league account attached to your discord user.`;
         break;
     }
+    return Promise.resolve(this.message)
   }
+
   static canProcess(name: string): boolean {
     const validCommands = ["league", "leagueoflegends", "lol"];
     return validCommands.includes(name);
