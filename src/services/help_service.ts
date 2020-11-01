@@ -5,14 +5,11 @@ export class HelpService implements IService {
 Usage
   @${this.botMention} [command] [arguments]
 Commands
-  [league, lol, leagueoflegends] Allows you to look up information for League of Legends
+  [league, lol] Allows you to look up information for League of Legends
 \`\`\``;
   }
   message: string = this.helpMessage;
   constructor(private botMention: string) {}
-  processComponents(args: string[]): void {
-    // Does nothing
-  }
   buildMessage(): Promise<string> {
     return Promise.resolve(this.message);
   }
