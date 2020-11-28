@@ -1,5 +1,3 @@
-import { LeagueService } from "./league_service";
-
 export class HelpService implements IService {
   get helpMessage() {
     // There should be NO indents on the lines with the back ticks
@@ -7,13 +5,12 @@ export class HelpService implements IService {
 Usage
   @${this.botMention} [command] [arguments]
 Commands
-  [league, lol, leagueoflegends] Allows you to look up information for League of Legends
+  [league, lol] Allows you to look up information for League of Legends
 \`\`\``;
   }
-
+  message: string = this.helpMessage;
   constructor(private botMention: string) {}
-
   buildMessage(): Promise<string> {
-    return Promise.resolve(this.helpMessage);
+    return Promise.resolve(this.message);
   }
 }
