@@ -13,8 +13,7 @@ export const Dispatcher = (components: string[]): Promise<string> => {
   switch (true) {
     case LeagueService.canProcess(botService):
       service = new LeagueService(botMention);
-      const messageComponents = components.splice(1, components.length); // Component without the bot user
-      return service.buildMessage(messageComponents);
+      break;
   }
-  return service.buildMessage();
+  return service.buildMessage(components);
 };

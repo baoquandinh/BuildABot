@@ -10,23 +10,22 @@ game    Will attempt to access information about a game.
 me      Set information about the league account attached to your discord user.
   \`\`\``;
   }
-  message: string = this.helpMessage;
-
   constructor(private botMention: string) {}
 
   buildMessage(components: string[]): Promise<string> {
-    if (components.length === 0) return Promise.resolve(this.helpMessage);
+    let message = this.helpMessage;
+    if (components.length === 0) return Promise.resolve(message);
     console.log(components);
-    const command = components[0].trim().toLowerCase();
+    const command = components[1].trim().toLowerCase();
     switch (command) {
       case "game":
-        this.message = `${command} - Looking for current game of user`;
+        message = `${command} - Looking for current game of user`;
         break;
       case "me":
-        this.message = `${command} - Set information about the league account attached to your discord user.`;
+        message = `${command} - Set information about the league account attached to your discord user.`;
         break;
     }
-    return Promise.resolve(this.message)
+    return Promise.resolve(message);
   }
 
   static canProcess(name: string): boolean {
